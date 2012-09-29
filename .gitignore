@@ -13,3 +13,6 @@ Makefile.in
 /missing
 *~
 README.html
+*.o
+src/httpd
+test/test_httpd

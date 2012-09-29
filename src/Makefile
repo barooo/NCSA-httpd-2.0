@@ -62,7 +62,7 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_httpd_OBJECTS = httpd.$(OBJEXT)
+am_httpd_OBJECTS = httpd.$(OBJEXT) httpd_main.$(OBJEXT)
 httpd_OBJECTS = $(am_httpd_OBJECTS)
 httpd_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
@@ -83,15 +83,18 @@ am__can_run_installinfo = \
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /Users/jdrichar/src/ncsa_httpd/missing --run aclocal-1.12
+ACLOCAL = ${SHELL} /Users/jdrichar/src/NCSA-httpd-2.0/missing --run aclocal-1.12
 AMTAR = $${TAR-tar}
-AUTOCONF = ${SHELL} /Users/jdrichar/src/ncsa_httpd/missing --run autoconf
-AUTOHEADER = ${SHELL} /Users/jdrichar/src/ncsa_httpd/missing --run autoheader
-AUTOMAKE = ${SHELL} /Users/jdrichar/src/ncsa_httpd/missing --run automake-1.12
+AUTOCONF = ${SHELL} /Users/jdrichar/src/NCSA-httpd-2.0/missing --run autoconf
+AUTOHEADER = ${SHELL} /Users/jdrichar/src/NCSA-httpd-2.0/missing --run autoheader
+AUTOMAKE = ${SHELL} /Users/jdrichar/src/NCSA-httpd-2.0/missing --run automake-1.12
 AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
+CHECK_CFLAGS = 
+CHECK_LIBS = -lcheck
+CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
@@ -99,7 +102,9 @@ DEPDIR = .deps
 ECHO_C = \c
 ECHO_N = 
 ECHO_T = 
+EGREP = /usr/bin/grep -E
 EXEEXT = 
+GREP = /usr/bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -109,7 +114,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /Users/jdrichar/src/ncsa_httpd/missing --run makeinfo
+MAKEINFO = ${SHELL} /Users/jdrichar/src/NCSA-httpd-2.0/missing --run makeinfo
 MKDIR_P = .././install-sh -c -d
 OBJEXT = o
 PACKAGE = httpd
@@ -124,10 +129,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = 
 VERSION = 1.0
-abs_builddir = /Users/jdrichar/src/ncsa_httpd/src
-abs_srcdir = /Users/jdrichar/src/ncsa_httpd/src
-abs_top_builddir = /Users/jdrichar/src/ncsa_httpd
-abs_top_srcdir = /Users/jdrichar/src/ncsa_httpd
+abs_builddir = /Users/jdrichar/src/NCSA-httpd-2.0/src
+abs_srcdir = /Users/jdrichar/src/NCSA-httpd-2.0/src
+abs_top_builddir = /Users/jdrichar/src/NCSA-httpd-2.0
+abs_top_srcdir = /Users/jdrichar/src/NCSA-httpd-2.0
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -146,7 +151,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /Users/jdrichar/src/ncsa_httpd/install-sh
+install_sh = ${SHELL} /Users/jdrichar/src/NCSA-httpd-2.0/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -166,7 +171,7 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-httpd_SOURCES = httpd.c
+httpd_SOURCES = httpd.c httpd_main.c
 all: all-am
 
 .SUFFIXES:
@@ -252,6 +257,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/httpd.Po
+include ./$(DEPDIR)/httpd_main.Po
 
 .c.o:
 	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
